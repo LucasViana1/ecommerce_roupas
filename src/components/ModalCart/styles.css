@@ -1,0 +1,14 @@
+.cart {
+  transition: margin-left 0.5s;
+  background: red;
+  position: fixed;
+  height: 100vh;
+  width: 35vw;
+  top: 0;
+  z-index: 901;
+  left: 65vw;
+}
+
+.cart__open {
+  margin-right: 100px;
+}

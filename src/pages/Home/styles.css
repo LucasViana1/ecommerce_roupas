@@ -1,0 +1,6 @@
+.home {
+  margin-top: 90px;
+  padding: 20px 10px;
+  display: flex;
+  flex-wrap: wrap;
+}

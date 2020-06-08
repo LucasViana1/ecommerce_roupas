@@ -1,18 +1,48 @@
 .productsale {
   display: flex;
   margin: 3px 5px;
+  flex-direction: column;
+
 }
 
 .productsale__container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   /* border: 1px solid rgba(0, 0, 0, 0.712); */
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.363);
-  border-radius: 14px;
-  padding-bottom: 6px;
+  border-radius: 10px;
+  padding: 4px;
+  background: #fff;
 }
 
 .productsale__container img {
   height: 60vh;
+}
+
+.productsale__price {
+  display: flex;
+}
+
+.productsale__priceold {
+  color: gray;
+  margin-right: 6px;
+  text-decoration: line-through;
+}
+
+.productsale_discount {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.productsale_discount span {
+  position: absolute;
+}
+
+.productsale__labels {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

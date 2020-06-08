@@ -1,16 +1,45 @@
 import React from 'react';
+// import {} from 'react-router-dom'
 import './styles.css';
 
-const ProductSale = () => {
+const ProductSale = ({ product }) => {
+  const {
+    id,
+    name,
+    image,
+    actual_price,
+    regular_price,
+    discount_percentage,
+  } = product;
+
   return (
     <article className="productsale">
+      {console.log('props')}
+      {console.log(product)}
       <section className="productsale__container">
+        {/* <div> */}
+        {discount_percentage ? (
+          <div className="productsale_discount">
+            <span>-{discount_percentage}</span>
+          </div>
+        ) : null}
         <img
-          src="https://d3l7rqep7l31az.cloudfront.net/images/products/20002605_615_catalog_1.jpg?1460136912"
-          alt="vestido"
+          src={
+            image ||
+            `https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível`
+          }
+          alt={name}
         />
-        <strong>VESTIDO TRANSPASSE BOW</strong>
-        <span>R$ 199,00</span>
+        {/* </div> */}
+      </section>
+      <section className="productsale__labels">
+        <strong>{name}</strong>
+        <span className="productsale__price">
+          <div className={discount_percentage ? 'productsale__priceold' : ''}>
+            {regular_price}
+          </div>
+          {discount_percentage ? actual_price : ''}
+        </span>
       </section>
     </article>
   );

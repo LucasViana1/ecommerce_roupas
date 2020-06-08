@@ -1,17 +1,20 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 import Routes from './routes';
 import Header from './components/Header';
-// import ModalCart from './components/ModalCart';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes />
-      {/* <ModalCart /> */}
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Header />
+        <Routes />
+      </BrowserRouter>
+    </Provider>
   );
 }
 

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import './styles.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductsStorage } from '../../store/modules/product/action';
 
 import ProductSale from '../../components/ProductSale';
 import api from '../../services/api';
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
 
   const dispatch = useDispatch();
+
+  const { data } = useSelector((state) => state.product);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -24,15 +27,18 @@ const Home = () => {
       console.log('setializedData');
       console.log(setializedData);
       // salva no state local e na store
-      setProducts(setializedData);
+      // setProducts(setializedData);
+      dispatch(setProductsStorage(setializedData));
     };
     loadProducts();
   }, []);
 
   return (
     <main className="home">
-      {products &&
-        products.map((product) => (
+      {/* {console.log('REDUXXX')}
+      {console.log(data)} */}
+      {data &&
+        data.map((product) => (
           <ProductSale key={product.code_color} product={product} />
         ))}
     </main>

@@ -1,9 +1,10 @@
 import React from 'react';
 import './styles.css';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModalCart } from '../../store/modules/cart/action';
 
-import logo from '../../assets/logo.png';
+// import logo from '../../assets/logo.png';
 import ModalCart from '../ModalCart';
 
 const Header = () => {
@@ -13,9 +14,12 @@ const Header = () => {
 
   return (
     <header className="header">
-      <section className="header__logo">
-        <img src={logo} alt="Logo" />
-      </section>
+      <Link to="/">
+        <section className="header__logo">
+          {/* <img src={logo} alt="Logo" /> */}
+          <h1>FASHIONISTA</h1>
+        </section>
+      </Link>
       <section className="header__icons">
         <button type="button" className="header__search">
           <i className="fas fa-search" />

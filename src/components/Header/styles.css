@@ -10,11 +10,16 @@
 }
 
 .header__logo {
-  padding: 14px 20px;
+  padding: 5px 20px;
 }
 
-.header__logo img {
-  height: 32px;
+.header a {
+  text-decoration: none;
+  color: black;
+}
+
+.header__logo h1 {
+  font-size: 30px;
 }
 
 .header__icons {

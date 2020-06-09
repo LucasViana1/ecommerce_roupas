@@ -46,3 +46,8 @@
   align-items: center;
   flex-direction: column;
 }
+
+.productsale a {
+  text-decoration: none;
+  color: black;
+}

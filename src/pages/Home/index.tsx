@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProductsStorage } from '../../store/modules/product/action';
 
 import ProductSale from '../../components/ProductSale';
-import api from '../../services/api';
+import Footer from '../../components/Footer';
+// import api from '../../services/api';
+import dados from '../../data.json';
 
 interface ProductState {
   [id: string]: any;
@@ -26,7 +28,8 @@ const Home = () => {
 
   useEffect(() => {
     const loadProducts = async () => {
-      const productsList = await api.get('/').then((response) => response.data);
+      // const productsList = await api.get('/').then((response) => response.data);
+      const productsList = dados;
       console.log('response');
       console.log(data);
       const setializedData = productsList.map((item: any, index: number) => ({
@@ -35,22 +38,23 @@ const Home = () => {
       }));
       console.log('setializedData');
       console.log(setializedData);
-      // salva no state local e na store
-      // setProducts(setializedData);
       dispatch(setProductsStorage(setializedData));
     };
     loadProducts();
   }, []);
 
   return (
-    <main className="home">
-      {/* {console.log('REDUXXX')}
-      {console.log(data)} */}
-      {data &&
-        data.map((product: any) => (
-          <ProductSale key={product.code_color} product={product} />
-        ))}
-    </main>
+    <>
+      <main className="home">
+        <div className="home__image" />
+
+        {data &&
+          data.map((product: any) => (
+            <ProductSale key={product.code_color} product={product} />
+          ))}
+      </main>
+      <Footer fixed={false} />
+    </>
   );
 };
 

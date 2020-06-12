@@ -1,59 +1,80 @@
 .product {
-    margin-top: 90px;
-    padding: 20px 10px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+  margin-top: 90px;
+  padding: 20px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .product__image img {
-    height: 300px;
+  height: 300px;
 }
 
 .product__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .product__size button {
-    margin-right: 20px;
-    background: none;
-    color: inherit;
-    border: 0.5px solid rgba(0, 0, 0, 0.466);
-    padding: 5px 8px;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-    border-radius: 6px;
+  margin-right: 20px;
+  background: none;
+  color: inherit;
+  border: 2px solid rgba(0, 0, 0, 0.466);
+  padding: 5px 8px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  border-radius: 6px;
+}
+
+.product__size button:hover {
+
+  border: 2px solid rgb(162, 0, 255);
+
 }
 
 .product__price span {
-    color: rgb(95, 95, 95);
-    font-size: 14px;
+  color: rgb(95, 95, 95);
+  font-size: 14px;
 }
 
 .product__price {
-    font-size: 17px;
+  font-size: 17px;
 }
 
 .product__add {
-    margin-top: 35px;
-    display: flex;
-    justify-content: center;
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
 }
 
 .product__add button {
-    color: rgb(231, 231, 231) !important;
-    background: rgb(162, 0, 255);
-    color: inherit;
-    border: 0.5px solid rgba(0, 0, 0, 0.466);
-    padding: 10px;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-    border-radius: 6px;
-    text-transform: uppercase;
-    font-weight: bold;
+  color: rgb(243, 243, 243) !important;
+  background: rgb(162, 0, 255);
+  color: inherit;
+  border: 0.5px solid rgba(0, 0, 0, 0.466);
+  padding: 10px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.product__add button:hover {
+  color: rgb(255, 255, 255) !important;
+  background: rgb(146, 0, 231);
+
+}
+
+.product h2 {
+  text-align: center;
+}
+
+.product__size--selected {
+  background: black !important;
+  color: white !important;
 }

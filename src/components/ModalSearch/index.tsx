@@ -1,26 +1,34 @@
 import React from 'react';
 import './styles.css';
 import { useDispatch } from 'react-redux';
+import { FiXSquare } from 'react-icons/fi';
 import { openModalSearch } from '../../store/modules/search/action';
 
-import ProductCart from '../ProductCart';
+import ProductSearch from '../ProductSearch';
 
 const ModalSearch = () => {
   const dispatch = useDispatch();
 
   return (
-    <article className="cart">
-      <header className="cart__header">
+    <article className="search">
+      <header className="search__header">
         <button type="button" onClick={() => dispatch(openModalSearch(false))}>
-          Fechar carrinho
+          <FiXSquare className="search__icon--x" />
         </button>
-        <span>SEARCH</span>
+        <span className="search__input">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="pesquisar..."
+          />
+        </span>
       </header>
-      <section className="cart_products">
-        {/* loop carrinho */}
-        <ProductCart />
-        <ProductCart />
-        <ProductCart />
+      <section className="search__products">
+        {/* loop search */}
+        <ProductSearch />
+        <ProductSearch />
+        <ProductSearch />
       </section>
     </article>
   );

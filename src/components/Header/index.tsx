@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css';
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -10,16 +10,29 @@ import ModalCart from '../ModalCart';
 import ModalSearch from '../ModalSearch';
 
 const Header: React.FC = () => {
+  const [visible, setVisible] = useState(false);
+
   const dispatch = useDispatch();
 
   const { openCart } = useSelector((state: any) => state.cart);
   const { openSearch } = useSelector((state: any) => state.search);
 
+  useEffect(() => {
+    const numPx = 200;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > numPx) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    });
+  }, []);
+
   return (
-    <header className="header">
+    <header className={`header ${visible ? 'header__visible' : ''}`}>
       <Link to="/">
         <section className="header__logo">
-          {/* <img src={logo} alt="Logo" /> */}
           <h1>FASHIONISTA</h1>
         </section>
       </Link>

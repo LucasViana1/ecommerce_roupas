@@ -1,0 +1,19 @@
+.footer {
+  background: black;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.footer__fixed {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 900;
+}
+
+.footer__icons {
+  margin-right: 6px;
+  font-size: 30px;
+}

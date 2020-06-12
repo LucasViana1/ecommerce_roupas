@@ -1,5 +1,7 @@
-import React from "react";
-import "./styles.css";
+import React from 'react';
+import './styles.css';
+
+import { FiTrash2, FiPlusCircle, FiMinusCircle } from 'react-icons/fi';
 
 const ProductCart = () => (
   <>
@@ -19,14 +21,23 @@ const ProductCart = () => (
       </section>
       <section className="productcart__buttons">
         <div className="productcart__quantify">
-          <button type="button">+</button>
+          <button type="button">
+            <FiMinusCircle className="productcart__icons--minusplus" />
+          </button>
           <input type="text" name="qtd" id="qtd" readOnly value={1} />
-          <button type="button">-</button>
+          <button type="button">
+            <FiPlusCircle className="productcart__icons--minusplus" />
+          </button>
         </div>
-        <button type="button">Remover</button>
+        <button type="button" className="productcart__buttons--remove">
+          <span>
+            <FiTrash2 className="productcart__icons--remove" />
+          </span>
+          REMOVER
+        </button>
       </section>
     </article>
-    <hr style={{ width: "94%" }} />
+    <hr style={{ width: '94%' }} />
   </>
 );
 

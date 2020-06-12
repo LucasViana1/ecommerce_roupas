@@ -34,6 +34,7 @@ module.exports = {
     'react/prop-types': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
+    'no-unused-expressions': 'off',
   },
   settings: {
     'import/resolver': {

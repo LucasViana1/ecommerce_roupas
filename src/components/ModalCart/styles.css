@@ -7,6 +7,8 @@
   top: 0;
   z-index: 901;
   left: 65vw;
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 
 @media screen and (max-width: 768px) {
@@ -53,4 +55,24 @@
 .cart__icon--x {
   font-size: 30px;
   color: rgb(248, 0, 0)
+}
+
+.cart__products--submit {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.cart__products--submit button {
+  color: rgb(243, 243, 243) !important;
+  background: rgb(6, 175, 6);
+  color: inherit;
+  border: 0.5px solid rgba(0, 0, 0, 0.466);
+  padding: 10px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: bold;
 }

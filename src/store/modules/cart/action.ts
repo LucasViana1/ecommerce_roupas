@@ -11,3 +11,10 @@ export function putProductInCart(product: object) {
     newProduct: product,
   };
 }
+
+export function removeProductFromCart(idRemove: number) {
+  return {
+    type: '@cart/REMOVE_PRODUCT_FROM_CART',
+    idRemove,
+  };
+}

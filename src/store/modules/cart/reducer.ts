@@ -3,6 +3,7 @@ import produce from 'immer';
 interface CartState {
   readonly openCart: boolean;
   readonly productList: any;
+  readonly idRemove: number;
 }
 
 // interface cartProps {
@@ -12,11 +13,15 @@ interface CartState {
 const INITIAL_STATE: CartState = {
   openCart: false,
   productList: [],
+  idRemove: -1,
 };
 
 const product: any = {};
 let count: number;
 let productFound: any;
+const productsInCartString = '';
+let productsInCart: any = [];
+let index: number;
 
 const cart = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
@@ -29,35 +34,48 @@ const cart = (state = INITIAL_STATE, action: any) => {
         openCart: action.open,
       };
     case '@cart/PUT_PRODUCT_IN_CART':
-      return produce(state, (draft) => {
-        console.log('state');
-        console.log(state);
-        console.log('draft');
-        console.log(draft);
-      });
-    // console.log('state - action product in cart');
-    // console.log(state);
-    // console.log(action);
-    // productFound = state.productList.filter(
-    //   (item: any) => item.id === action.newProduct.id
-    // );
-    // console.log('productFound quantity and length');
-    // console.log(productFound);
-    // console.log([productFound.quantity]);
-    // console.log(productFound.length);
-    // // AJUSTAR LOGICA DE ADICIONAR MAIS UM NO CARRINHO
-    // productFound.length === 0
-    //   ? (count = 1)
-    //   : (count = productFound.quantity + 1);
+      console.log('state - action product in cart');
+      console.log(state);
+      console.log(action);
 
-    // product = {
-    //   quantity: count,
-    //   ...action.newProduct,
-    // };
-    // return {
-    //   ...state,
-    //   productList: [...state.productList, product],
-    // };
+      // // localstorage anterior
+      // productsInCartString =
+      //   window.localStorage.getItem('productsInCart') || '';
+      // // insere localstorage
+      // productsInCart = JSON.parse(productsInCartString);
+      // console.log('productsInCart json');
+      // console.log(productsInCart);
+      // window.localStorage.setItem(
+      //   'productsInCart',
+      //   JSON.stringify(productsInCart)
+      // );
+
+      return {
+        ...state,
+        productList: [...state.productList, action.newProduct],
+      };
+
+    case '@cart/REMOVE_PRODUCT_FROM_CART':
+      console.log('state - remove from cart');
+      console.log(state);
+      console.log(action);
+
+      productsInCart = state.productList;
+      console.log('productsInCart antes');
+      console.log(productsInCart);
+      index = productsInCart.findIndex((p: any) => p.id === action.idRemove);
+      console.log('index');
+      console.log(index);
+      productsInCart.splice(index, 1);
+      console.log('productsInCart depois');
+      console.log(productsInCart);
+
+      // remove localstorage
+
+      return {
+        ...state,
+        productList: productsInCart,
+      };
     default:
       return state;
   }

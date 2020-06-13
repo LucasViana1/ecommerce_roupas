@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { getProductById } from '../../store/modules/product/action';
 import { putProductInCart } from '../../store/modules/cart/action';
@@ -13,6 +15,7 @@ const Home = () => {
   const [selectedSize, setSelectedSize] = useState('');
 
   const { id } = useParams();
+  const history = useHistory();
   const dispatch = useDispatch();
 
   console.log('use selector');
@@ -24,11 +27,6 @@ const Home = () => {
     dispatch(getProductById(id));
   }, [dispatch]);
 
-  // const handleSize = useCallback((size: string) => {
-  //   setSelectedSize(size);
-  //   console.log('selectedSize');
-  //   console.log(size);
-  // }, []);
   function handleSize(size: string) {
     setSelectedSize(size);
     console.log('selectedSize');
@@ -37,57 +35,66 @@ const Home = () => {
 
   function handleSubmit() {
     console.log('submit product');
+    console.log(selectedSize);
+    if (selectedSize === '') {
+      toast.error('Selecione o tamanho!');
+      return;
+    }
     console.log(product);
-    dispatch(putProductInCart(product));
+    dispatch(putProductInCart({ ...product, selectedSize }));
+    toast.success('Produto adicionado ao carrinho!');
+    history.push('/');
   }
 
   return (
     <>
       <article className="product">
         <h2>DETALHES</h2>
-        <div className="product__container">
-          <section className="product__image">
-            <img
-              src="https://viniciusvinna.netlify.app/assets/api-fashionista/20002570_002_catalog_1.jpg"
-              alt="produto qualquer"
-            />
-          </section>
-          <section className="product__detail">
-            <h3>REGATA ALCINHA FOLK</h3>
-            <div className="product__price">
-              R$ 99,90 <span> em até 3x R$ 33,30</span>
-            </div>
-            <div className="product__size">
-              <p>Escolha o tamanho</p>
-              <button type="button">P</button>
+        {console.log('product view')}
+        {console.log(product)}
+        {product && (
+          <div className="product__container">
+            <section className="product__image">
+              <img src={product.image} alt={product.name} />
+            </section>
+            <section className="product__detail">
+              <h3>{product.name}</h3>
+              <div className="product__price">
+                {product.actual_price}{' '}
+                <span> em até {product.installments}</span>
+              </div>
+              <div className="product__size">
+                <p>Escolha o tamanho</p>
+                {/* <button type="button">P</button>
               <button type="button">M</button>
               <button type="button">G</button>
-              <button type="button">GG</button>
-              {product &&
-                product.sizes.map((item: any) =>
-                  item.available ? (
-                    <button
-                      key={item.sku}
-                      type="button"
-                      onClick={() => handleSize(item.size)}
-                      className={`${
-                        selectedSize === item.size
-                          ? 'product__size--selected'
-                          : ''
-                      }`}
-                    >
-                      {item.size}
-                    </button>
-                  ) : null
-                )}
-            </div>
-            <div className="product__add">
-              <button type="button" onClick={() => handleSubmit()}>
-                Adicionar ao carrinho
-              </button>
-            </div>
-          </section>
-        </div>
+              <button type="button">GG</button> */}
+                {product &&
+                  product.sizes.map((item: any) =>
+                    item.available ? (
+                      <button
+                        key={item.sku}
+                        type="button"
+                        onClick={() => handleSize(item.size)}
+                        className={`${
+                          selectedSize === item.size
+                            ? 'product__size--selected'
+                            : ''
+                        }`}
+                      >
+                        {item.size}
+                      </button>
+                    ) : null
+                  )}
+              </div>
+              <div className="product__add">
+                <button type="button" onClick={() => handleSubmit()}>
+                  Adicionar ao carrinho
+                </button>
+              </div>
+            </section>
+          </div>
+        )}
       </article>
       <Footer fixed />
     </>

@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   const { openSearch } = useSelector((state: any) => state.search);
 
   useEffect(() => {
-    const numPx = 200;
+    const numPx = 10;
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > numPx) {

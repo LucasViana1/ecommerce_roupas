@@ -30,14 +30,14 @@ const Home = () => {
     const loadProducts = async () => {
       // const productsList = await api.get('/').then((response) => response.data);
       const productsList = dados;
-      console.log('response');
-      console.log(data);
+      // console.log('response');
+      // console.log(data);
       const setializedData = productsList.map((item: any, index: number) => ({
         id: index,
         ...item,
       }));
-      console.log('setializedData');
-      console.log(setializedData);
+      // console.log('setializedData');
+      // console.log(setializedData);
       dispatch(setProductsStorage(setializedData));
     };
     loadProducts();

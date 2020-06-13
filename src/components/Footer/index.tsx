@@ -13,12 +13,15 @@ const Footer: React.FC<FooterProps> = ({ fixed }) => {
         <p>Desenvolvido por Lucas Viana Cunha</p>
       </section>
       <section>
-        {/* <span> */}
-        <AiFillLinkedin className="footer__icons" />
-        {/* </span> */}
-        {/* <span> */}
-        <AiFillGithub className="footer__icons" />
-        {/* </span> */}
+        <a
+          href="https://www.linkedin.com/in/lucas-viana-cunha-/"
+          target="__blank"
+        >
+          <AiFillLinkedin className="footer__icons" />
+        </a>
+        <a href="https://github.com/LucasViana1" target="__blank">
+          <AiFillGithub className="footer__icons" />
+        </a>
       </section>
     </footer>
   );

@@ -7,6 +7,8 @@
   top: 0;
   z-index: 901;
   left: 65vw;
+  max-height: 100vh;
+  overflow-y: scroll;
 }
 
 @media screen and (max-width: 768px) {
@@ -49,6 +51,7 @@
   font-size: 18px;
   width: 90%;
   margin-left: 8px;
+
 }
 
 .search__icon--x {

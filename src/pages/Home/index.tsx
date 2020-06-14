@@ -5,8 +5,8 @@ import { setProductsStorage } from '../../store/modules/product/action';
 
 import ProductSale from '../../components/ProductSale';
 import Footer from '../../components/Footer';
-// import api from '../../services/api';
-import dados from '../../data.json';
+import api from '../../services/api';
+// import dados from '../../data.json';
 
 interface ProductState {
   [id: string]: any;
@@ -28,8 +28,8 @@ const Home = () => {
 
   useEffect(() => {
     const loadProducts = async () => {
-      // const productsList = await api.get('/').then((response) => response.data);
-      const productsList = dados;
+      const productsList = await api.get('/').then((response) => response.data);
+      // const productsList = dados;
       // console.log('response');
       // console.log(data);
       const setializedData = productsList.map((item: any, index: number) => ({

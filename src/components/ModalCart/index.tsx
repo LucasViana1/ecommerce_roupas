@@ -8,12 +8,12 @@ import ProductCart from '../ProductCart';
 
 const ModalCart = () => {
   const [productsWithQuantity, setProductsWithQuantity] = useState([]);
-  const [amount, setAmount] = useState(0);
   const [remove, setRemove] = useState(false);
 
   const dispatch = useDispatch();
 
   const { productList } = useSelector((state: any) => state.cart);
+  const { amount } = useSelector((state: any) => state.cart);
 
   useEffect(() => {
     const list: any = [];
@@ -26,7 +26,6 @@ const ModalCart = () => {
     }
 
     setProductsWithQuantity(list);
-    setAmount(list.length);
 
     // list.sort(function compare(a: any, b: any) {
     //   if (a.id < b.id) return -1;

@@ -4,6 +4,7 @@ interface CartState {
   readonly openCart: boolean;
   readonly productList: any;
   readonly idRemove: number;
+  readonly amount: number;
 }
 
 // interface cartProps {
@@ -14,6 +15,7 @@ const INITIAL_STATE: CartState = {
   openCart: false,
   productList: [],
   idRemove: -1,
+  amount: 0,
 };
 
 const product: any = {};
@@ -75,6 +77,13 @@ const cart = (state = INITIAL_STATE, action: any) => {
       return {
         ...state,
         productList: productsInCart,
+      };
+    case '@cart/CART_QUANTITY':
+      console.log('state quantity');
+      console.log(state);
+      return {
+        ...state,
+        amount: state.amount + action.amount,
       };
     default:
       return state;

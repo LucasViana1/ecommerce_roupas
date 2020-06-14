@@ -18,3 +18,10 @@ export function removeProductFromCart(idRemove: number) {
     idRemove,
   };
 }
+
+export function cartQuantity(amount: number) {
+  return {
+    type: '@cart/CART_QUANTITY',
+    amount,
+  };
+}

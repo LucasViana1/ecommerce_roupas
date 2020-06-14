@@ -62,3 +62,7 @@
     justify-content: space-evenly;
   }
 }
+
+.productsearch a {
+  text-transform: none;
+}

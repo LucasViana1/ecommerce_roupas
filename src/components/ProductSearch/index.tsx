@@ -1,6 +1,10 @@
 import React from 'react';
 import './styles.css';
 
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { openModalSearch } from '../../store/modules/search/action';
+
 interface ProductSearchProps {
   detail: {
     id: number;
@@ -16,19 +20,26 @@ interface ProductSearchProps {
 }
 
 const ProductSearch: React.FC<ProductSearchProps> = ({ detail }) => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <article className="productsearch">
-        <section className="productsearch__avatar">
-          <img src={detail.image} alt={detail.name} />
-        </section>
-        <section className="productsearch__details">
-          <strong>{detail.name}</strong>
-          <div>
-            <span>{detail.actual_price}</span>
-            <span>{detail.installments}</span>
-          </div>
-        </section>
+        <Link
+          to={`/product/${detail.id}`}
+          onClick={() => dispatch(openModalSearch(false))}
+        >
+          <section className="productsearch__avatar">
+            <img src={detail.image} alt={detail.name} />
+          </section>
+          <section className="productsearch__details">
+            <strong>{detail.name}</strong>
+            <div>
+              <span>{detail.actual_price}</span>
+              <span>{detail.installments}</span>
+            </div>
+          </section>
+        </Link>
       </article>
       <hr style={{ width: '94%' }} />
     </>

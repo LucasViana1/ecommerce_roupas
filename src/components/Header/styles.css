@@ -43,13 +43,36 @@
 
 .header__cart {
   margin-left: 14px;
+  display: flex;
+  align-items: center;
 }
 
 .header__cart--icon {
-  font-size: 30px;
+  font-size: 32px;
+  color: rgb(102, 32, 134)
 }
 
 .header__search--icon {
-  font-size: 30px;
+  color: rgb(102, 32, 134);
+  font-size: 32px;
   margin-right: 30px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .header__search--icon {
+    margin-right: 0.5px;
+  }
+}
+
+.header__cart--amount {
+  background: red;
+  margin-left: 2px;
+  padding: 1px 5px;
+  border-radius: 50%;
+}
+
+.header__cart--amount span {
+  color: white;
+  font-weight: bold;
 }

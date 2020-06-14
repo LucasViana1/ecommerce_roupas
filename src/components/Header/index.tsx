@@ -3,7 +3,7 @@ import './styles.css';
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModalCart } from '../../store/modules/cart/action';
+import { openModalCart, cartQuantity } from '../../store/modules/cart/action';
 import { openModalSearch } from '../../store/modules/search/action';
 
 import ModalCart from '../ModalCart';
@@ -16,6 +16,7 @@ const Header: React.FC = () => {
 
   const { openCart } = useSelector((state: any) => state.cart);
   const { openSearch } = useSelector((state: any) => state.search);
+  const { amount } = useSelector((state: any) => state.cart);
 
   useEffect(() => {
     const numPx = 10;
@@ -27,6 +28,10 @@ const Header: React.FC = () => {
         setVisible(false);
       }
     });
+  }, []);
+
+  useEffect(() => {
+    dispatch(cartQuantity(0));
   }, []);
 
   return (
@@ -52,6 +57,9 @@ const Header: React.FC = () => {
         >
           {/* <i className="fas fa-cart-arrow-down" /> */}
           <FiShoppingCart className="header__cart--icon" />
+          <div className="header__cart--amount">
+            <span>{amount}</span>
+          </div>
         </button>
       </section>
       {openCart ? <ModalCart /> : null}

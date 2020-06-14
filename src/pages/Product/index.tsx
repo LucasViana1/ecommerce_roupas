@@ -7,7 +7,10 @@ import { useParams, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { getProductById } from '../../store/modules/product/action';
-import { putProductInCart } from '../../store/modules/cart/action';
+import {
+  putProductInCart,
+  cartQuantity,
+} from '../../store/modules/cart/action';
 
 import Footer from '../../components/Footer';
 
@@ -42,6 +45,7 @@ const Home = () => {
     }
     console.log(product);
     dispatch(putProductInCart({ ...product, selectedSize }));
+    dispatch(cartQuantity(1));
     toast.success('Produto adicionado ao carrinho!');
     history.push('/');
   }

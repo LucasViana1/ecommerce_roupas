@@ -3,7 +3,10 @@ import './styles.css';
 
 import { useDispatch } from 'react-redux';
 import { FiTrash2, FiPlusCircle, FiMinusCircle } from 'react-icons/fi';
-import { removeProductFromCart } from '../../store/modules/cart/action';
+import {
+  removeProductFromCart,
+  cartQuantity,
+} from '../../store/modules/cart/action';
 
 interface ProductCartProps {
   detail: {
@@ -41,6 +44,7 @@ const ProductCart: React.FC<ProductCartProps> = ({
 
   function handleRemoveProduct() {
     dispatch(removeProductFromCart(detail.id));
+    dispatch(cartQuantity(-1));
     handleRemove(!remove);
   }
 

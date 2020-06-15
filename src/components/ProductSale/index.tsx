@@ -27,7 +27,6 @@ const ProductSale: React.FC<ProductSaleProps> = ({ product }) => {
     <article className="productsale">
       <Link to={`/product/${id}`}>
         <section className="productsale__container">
-          {/* <div> */}
           {discount_percentage ? (
             <div className="productsale__discount">
               <span>-{discount_percentage}</span>
@@ -40,7 +39,6 @@ const ProductSale: React.FC<ProductSaleProps> = ({ product }) => {
             }
             alt={name}
           />
-          {/* </div> */}
         </section>
         <section className="productsale__labels">
           <strong>{name}</strong>

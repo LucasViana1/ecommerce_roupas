@@ -22,10 +22,8 @@ const Home = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  console.log('use selector');
   const { product } = useSelector((state: any) => state.product);
   const { productList } = useSelector((state: any) => state.cart);
-  console.log(productList);
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -33,8 +31,6 @@ const Home = () => {
 
   function handleSize(size: string) {
     setSelectedSize(size);
-    console.log('selectedSize');
-    console.log(size);
   }
 
   function handleSubmit() {
@@ -63,8 +59,7 @@ const Home = () => {
     <>
       <article className="product">
         <h2>DETALHES</h2>
-        {console.log('product view')}
-        {console.log(product)}
+
         {product && (
           <div className="product__container">
             <section className="product__image">
@@ -79,7 +74,6 @@ const Home = () => {
             <section className="product__detail">
               <h3>{product.name}</h3>
               <div className="product__price">
-                {/* {product.actual_price} */}
                 <div
                   className={
                     product.discount_percentage ? 'product__priceold' : ''
@@ -92,10 +86,6 @@ const Home = () => {
               </div>
               <div className="product__size">
                 <p>Escolha o tamanho</p>
-                {/* <button type="button">P</button>
-              <button type="button">M</button>
-              <button type="button">G</button>
-              <button type="button">GG</button> */}
                 {product &&
                   product.sizes.map((item: any) =>
                     item.available ? (

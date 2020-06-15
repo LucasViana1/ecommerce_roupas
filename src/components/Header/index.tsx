@@ -47,7 +47,6 @@ const Header: React.FC = () => {
           className="header__search"
           onClick={() => dispatch(openModalSearch(true))}
         >
-          {/* <i className="fas fa-search" /> */}
           <FiSearch className="header__search--icon" />
         </button>
         <button
@@ -55,7 +54,6 @@ const Header: React.FC = () => {
           className="header__cart"
           onClick={() => dispatch(openModalCart(true))}
         >
-          {/* <i className="fas fa-cart-arrow-down" /> */}
           <FiShoppingCart className="header__cart--icon" />
           <div className="header__cart--amount">
             <span>{amount}</span>

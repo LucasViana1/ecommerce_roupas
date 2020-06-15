@@ -37,8 +37,7 @@ const Home = () => {
 
         return { id: index, price, ...item };
       });
-      // console.log('setializedData');
-      // console.log(setializedData);
+
       dispatch(setProductsStorage(setializedData));
     };
     loadProducts();

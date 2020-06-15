@@ -75,7 +75,6 @@ const ProductCart: React.FC<ProductCartProps> = ({
             <strong>{detail.name} </strong>{' '}
             <span>Tamanho: {detail.selectedSize}</span>
           </div>
-          {console.log(detail)}
           <div>
             <span>{detail.actual_price}</span>
             <span>{detail.installments}</span>

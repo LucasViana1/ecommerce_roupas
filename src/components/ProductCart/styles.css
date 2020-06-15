@@ -75,9 +75,7 @@
 }
 
 .productcart__buttons--remove span {
-  /* background: rgb(211, 0, 0); */
-  /* background: orange;
-  height: 100%; */
+
   display: flex;
   align-items: center;
 }

@@ -8,10 +8,6 @@ interface CartState {
   readonly total: number;
 }
 
-// interface cartProps {
-//   openCart: boolean;
-// }
-
 const INITIAL_STATE: CartState = {
   openCart: false,
   productList: [],
@@ -20,10 +16,7 @@ const INITIAL_STATE: CartState = {
   total: 0,
 };
 
-const product: any = {};
-let count: number;
-let productFound: any;
-let productsInCartString: any;
+// let productsInCartString: any;
 let productsInCart: any = [];
 let index: number;
 
@@ -68,15 +61,11 @@ function cart(state = INITIAL_STATE, action: any) {
         productList: productsInCart,
       };
     case '@cart/CART_QUANTITY':
-      console.log('state quantity');
-      console.log(state);
       return {
         ...state,
         amount: state.amount + action.amount,
       };
     case '@cart/CART_TOTAL':
-      console.log('state total');
-      console.log(state);
       return {
         ...state,
         total: state.total + action.total,

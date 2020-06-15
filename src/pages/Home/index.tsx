@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProductsStorage } from '../../store/modules/product/action';
+import { cartQuantity } from '../../store/modules/cart/action';
 
 import ProductSale from '../../components/ProductSale';
 import Footer from '../../components/Footer';
 import api from '../../services/api';
-// import dados from '../../data.json';
 
 interface ProductState {
   [id: string]: any;
@@ -25,23 +25,32 @@ const Home = () => {
   const { data }: { data: ProductState } = useSelector(
     (state: any) => state.product
   );
+  const { productList } = useSelector((state: any) => state.cart);
 
   useEffect(() => {
     const loadProducts = async () => {
       const productsList = await api.get('/').then((response) => response.data);
-      // const productsList = dados;
-      // console.log('response');
-      // console.log(data);
-      const setializedData = productsList.map((item: any, index: number) => ({
-        id: index,
-        ...item,
-      }));
+
+      const setializedData = productsList.map((item: any, index: number) => {
+        let [, price] = item.actual_price.split(' ');
+        price = Number(price.replace(',', '.'));
+
+        return { id: index, price, ...item };
+      });
       // console.log('setializedData');
       // console.log(setializedData);
       dispatch(setProductsStorage(setializedData));
     };
     loadProducts();
   }, []);
+
+  // useEffect(() => {
+  //   dispatch(cartLoad());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(cartQuantity(productList.length));
+  // }, [productList]);
 
   return (
     <>

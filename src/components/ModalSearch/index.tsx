@@ -19,6 +19,7 @@ interface ProductState {
 
 const ModalSearch = () => {
   const [filterProducts, setFilterProducts] = useState([]);
+  const [notFound, setNotFound] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -28,9 +29,12 @@ const ModalSearch = () => {
 
   function handleFilter(event: ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
-    setFilterProducts(
-      data.filter((item: any) => item.name.includes(value.toUpperCase()))
+    const filter = data.filter((item: any) =>
+      item.name.includes(value.toUpperCase())
     );
+    setFilterProducts(filter);
+    if (filter.length === 0 && value !== '') setNotFound(true);
+    else setNotFound(false);
   }
 
   return (
@@ -54,9 +58,12 @@ const ModalSearch = () => {
           filterProducts.map((product: any) => (
             <ProductSearch key={product.id} detail={product} />
           ))}
-        {/* <ProductSearch />
-        <ProductSearch />
-        <ProductSearch /> */}
+
+        {notFound && (
+          <div className="search__products--notfound">
+            <span>Produto não encontrado!</span>
+          </div>
+        )}
       </section>
     </article>
   );

@@ -6,12 +6,14 @@ import { FiTrash2, FiPlusCircle, FiMinusCircle } from 'react-icons/fi';
 import {
   removeProductFromCart,
   cartQuantity,
+  cartTotal,
 } from '../../store/modules/cart/action';
 
 interface ProductCartProps {
   detail: {
     id: number;
     quantity: number;
+    price: number;
     actual_price: string;
     discount_percentage: string;
     image: string;
@@ -35,16 +37,24 @@ const ProductCart: React.FC<ProductCartProps> = ({
 
   function handleQuantity(minus = false) {
     if (minus) {
-      if (quantity === 1) setQuantity(quantity);
-      else setQuantity(quantity - 1);
+      if (quantity === 1) {
+        setQuantity(quantity);
+      } else {
+        setQuantity(quantity - 1);
+        dispatch(cartQuantity(-1));
+        dispatch(cartTotal(-detail.price));
+      }
     } else {
       setQuantity(quantity + 1);
+      dispatch(cartQuantity(1));
+      dispatch(cartTotal(detail.price));
     }
   }
 
   function handleRemoveProduct() {
     dispatch(removeProductFromCart(detail.id));
-    dispatch(cartQuantity(-1));
+    dispatch(cartQuantity(-quantity));
+    dispatch(cartTotal(-(detail.price * quantity)));
     handleRemove(!remove);
   }
 
@@ -52,10 +62,19 @@ const ProductCart: React.FC<ProductCartProps> = ({
     <>
       <article className="productcart">
         <section className="productcart__avatar">
-          <img src={detail.image} alt={detail.name} />
+          <img
+            src={
+              detail.image ||
+              'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
+            }
+            alt={detail.name}
+          />
         </section>
         <section className="productcart__details">
-          <strong>{detail.name}</strong>
+          <div className="productcart__details--title">
+            <strong>{detail.name} </strong>{' '}
+            <span>Tamanho: {detail.selectedSize}</span>
+          </div>
           {console.log(detail)}
           <div>
             <span>{detail.actual_price}</span>
@@ -67,7 +86,14 @@ const ProductCart: React.FC<ProductCartProps> = ({
             <button type="button" onClick={() => handleQuantity(true)}>
               <FiMinusCircle className="productcart__icons--minusplus" />
             </button>
-            <input type="text" name="qtd" id="qtd" readOnly value={quantity} />
+            <input
+              key={`${detail.id}_${detail.selectedSize}`}
+              type="text"
+              name="qtd"
+              id="qtd"
+              readOnly
+              value={quantity}
+            />
             <button type="button" onClick={() => handleQuantity()}>
               <FiPlusCircle className="productcart__icons--minusplus" />
             </button>

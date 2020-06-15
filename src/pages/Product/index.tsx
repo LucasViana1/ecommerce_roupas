@@ -10,6 +10,7 @@ import { getProductById } from '../../store/modules/product/action';
 import {
   putProductInCart,
   cartQuantity,
+  cartTotal,
 } from '../../store/modules/cart/action';
 
 import Footer from '../../components/Footer';
@@ -28,7 +29,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getProductById(id));
-  }, [dispatch]);
+  }, []);
 
   function handleSize(size: string) {
     setSelectedSize(size);
@@ -37,15 +38,23 @@ const Home = () => {
   }
 
   function handleSubmit() {
-    console.log('submit product');
-    console.log(selectedSize);
     if (selectedSize === '') {
       toast.error('Selecione o tamanho!');
       return;
     }
-    console.log(product);
+
+    const duplicate = productList.filter((item: any) => item.id === product.id);
+
+    if (duplicate.length !== 0 && duplicate[0].selectedSize === selectedSize) {
+      toast.error('Produto já adicionado ao carrinho!');
+      return;
+    }
+
+    dispatch(cartTotal(product.price));
     dispatch(putProductInCart({ ...product, selectedSize }));
+
     dispatch(cartQuantity(1));
+
     toast.success('Produto adicionado ao carrinho!');
     history.push('/');
   }
@@ -59,12 +68,26 @@ const Home = () => {
         {product && (
           <div className="product__container">
             <section className="product__image">
-              <img src={product.image} alt={product.name} />
+              <img
+                src={
+                  product.image ||
+                  'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
+                }
+                alt={product.name}
+              />
             </section>
             <section className="product__detail">
               <h3>{product.name}</h3>
               <div className="product__price">
-                {product.actual_price}{' '}
+                {/* {product.actual_price} */}
+                <div
+                  className={
+                    product.discount_percentage ? 'product__priceold' : ''
+                  }
+                >
+                  {product.regular_price}
+                </div>
+                {product.discount_percentage ? product.actual_price : ''}
                 <span> em até {product.installments}</span>
               </div>
               <div className="product__size">

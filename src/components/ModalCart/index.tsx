@@ -32,6 +32,7 @@ const ModalCart = () => {
   function handleCheckOut() {
     toast.info('Pedido finalizado!');
     dispatch(checkOut());
+    dispatch(openModalCart(false));
   }
 
   return (

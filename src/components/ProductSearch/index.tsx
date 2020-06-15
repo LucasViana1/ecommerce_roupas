@@ -30,7 +30,13 @@ const ProductSearch: React.FC<ProductSearchProps> = ({ detail }) => {
           onClick={() => dispatch(openModalSearch(false))}
         >
           <section className="productsearch__avatar">
-            <img src={detail.image} alt={detail.name} />
+            <img
+              src={
+                detail.image ||
+                'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+Indisponível'
+              }
+              alt={detail.name}
+            />
           </section>
           <section className="productsearch__details">
             <strong>{detail.name}</strong>

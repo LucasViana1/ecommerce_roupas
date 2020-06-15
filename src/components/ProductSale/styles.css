@@ -1,6 +1,6 @@
 .productsale {
   display: flex;
-  margin: 3px 5px;
+  margin: 15px 5px;
   flex-direction: column;
 
 }
@@ -38,6 +38,9 @@
 
 .productsale__discount span {
   position: absolute;
+  background: #6b3f81;
+  padding: 2px 4px;
+  color: whitesmoke;
 }
 
 .productsale__labels {
@@ -45,6 +48,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 8px;
 }
 
 .productsale a {

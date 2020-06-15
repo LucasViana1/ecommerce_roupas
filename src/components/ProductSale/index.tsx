@@ -26,8 +26,6 @@ const ProductSale: React.FC<ProductSaleProps> = ({ product }) => {
   return (
     <article className="productsale">
       <Link to={`/product/${id}`}>
-        {/* {console.log('props')}
-        {console.log(product)} */}
         <section className="productsale__container">
           {/* <div> */}
           {discount_percentage ? (

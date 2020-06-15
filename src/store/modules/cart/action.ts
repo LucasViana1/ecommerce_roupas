@@ -25,3 +25,22 @@ export function cartQuantity(amount: number) {
     amount,
   };
 }
+
+export function cartTotal(total: number) {
+  return {
+    type: '@cart/CART_TOTAL',
+    total,
+  };
+}
+
+export function checkOut() {
+  return {
+    type: '@cart/CHECK_OUT',
+  };
+}
+
+// export function cartLoad() {
+//   return {
+//     type: '@cart/CART_LOAD',
+//   };
+// }

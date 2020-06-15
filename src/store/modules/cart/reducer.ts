@@ -5,6 +5,7 @@ interface CartState {
   readonly productList: any;
   readonly idRemove: number;
   readonly amount: number;
+  readonly total: number;
 }
 
 // interface cartProps {
@@ -16,37 +17,31 @@ const INITIAL_STATE: CartState = {
   productList: [],
   idRemove: -1,
   amount: 0,
+  total: 0,
 };
 
 const product: any = {};
 let count: number;
 let productFound: any;
-const productsInCartString = '';
+let productsInCartString: any;
 let productsInCart: any = [];
 let index: number;
 
-const cart = (state = INITIAL_STATE, action: any) => {
+function cart(state = INITIAL_STATE, action: any) {
   switch (action.type) {
     case '@cart/OPEN':
-      // console.log('state - action');
-      // console.log(state);
-      // console.log(action);
       return {
         ...state,
         openCart: action.open,
       };
     case '@cart/PUT_PRODUCT_IN_CART':
-      console.log('state - action product in cart');
-      console.log(state);
-      console.log(action);
+      // productsInCartString = window.localStorage.getItem('productsInCart');
+      // productsInCartString
+      //   ? (productsInCart = JSON.parse(productsInCartString))
+      //   : (productsInCart = []);
 
-      // // localstorage anterior
-      // productsInCartString =
-      //   window.localStorage.getItem('productsInCart') || '';
-      // // insere localstorage
-      // productsInCart = JSON.parse(productsInCartString);
-      // console.log('productsInCart json');
-      // console.log(productsInCart);
+      // productsInCart.push(action.newProduct);
+
       // window.localStorage.setItem(
       //   'productsInCart',
       //   JSON.stringify(productsInCart)
@@ -54,25 +49,19 @@ const cart = (state = INITIAL_STATE, action: any) => {
 
       return {
         ...state,
+        // productList: productsInCart,
         productList: [...state.productList, action.newProduct],
       };
 
     case '@cart/REMOVE_PRODUCT_FROM_CART':
-      console.log('state - remove from cart');
-      console.log(state);
-      console.log(action);
-
       productsInCart = state.productList;
-      console.log('productsInCart antes');
-      console.log(productsInCart);
-      index = productsInCart.findIndex((p: any) => p.id === action.idRemove);
-      console.log('index');
-      console.log(index);
-      productsInCart.splice(index, 1);
-      console.log('productsInCart depois');
-      console.log(productsInCart);
+      // productsInCartString =
+      //   window.localStorage.getItem('productsInCart') || [];
+      // productsInCart = JSON.parse(productsInCartString);
 
-      // remove localstorage
+      index = productsInCart.findIndex((p: any) => p.id === action.idRemove);
+
+      productsInCart.splice(index, 1);
 
       return {
         ...state,
@@ -85,9 +74,33 @@ const cart = (state = INITIAL_STATE, action: any) => {
         ...state,
         amount: state.amount + action.amount,
       };
+    case '@cart/CART_TOTAL':
+      console.log('state total');
+      console.log(state);
+      return {
+        ...state,
+        total: state.total + action.total,
+      };
+    case '@cart/CHECK_OUT':
+      return {
+        ...state,
+        productList: [],
+        amount: 0,
+        total: 0,
+      };
+    // case '@cart/CART_LOAD':
+    //   productsInCartString = window.localStorage.getItem('productsInCart');
+
+    //   productsInCartString
+    //     ? (productsInCart = JSON.parse(productsInCartString))
+    //     : (productsInCart = []);
+    //   return {
+    //     ...state,
+    //     productList: productsInCart,
+    //   };
     default:
       return state;
   }
-};
+}
 
 export default cart;

@@ -17,6 +17,10 @@
   padding: 5px 20px;
 }
 
+.header__logo h1 {
+  font-family: 'Dancing Script', cursive;
+}
+
 .header a {
   text-decoration: none;
   color: black;
@@ -66,9 +70,12 @@
 }
 
 .header__cart--amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: red;
   margin-left: 2px;
-  padding: 1px 5px;
+  padding: 1px 6px;
   border-radius: 50%;
 }
 

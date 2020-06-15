@@ -24,7 +24,7 @@
 }
 
 .cart__header {
-  background: #fff;
+  background: rgb(185, 117, 216);
   display: flex;
 }
 
@@ -54,12 +54,14 @@
 
 .cart__icon--x {
   font-size: 30px;
-  color: rgb(248, 0, 0)
+  margin-left: 4px;
+  color: rgb(108, 44, 138)
 }
 
 .cart__products--submit {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
   margin-top: 14px;
 }
 
@@ -75,4 +77,16 @@
   border-radius: 6px;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.cart__header--amount p {
+  font-weight: bold;
+}
+
+.cart__total {}
+
+.cart__total span {
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(29, 29, 29);
 }

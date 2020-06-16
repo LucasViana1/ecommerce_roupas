@@ -9,6 +9,15 @@
   margin-left: 14px;
 }
 
+@media screen and (min-width: 768px) {
+
+  .productcart__details {
+
+    width: 42%;
+  }
+}
+
+
 .productcart__details--title strong {
   font-size: 14.5px;
 }
